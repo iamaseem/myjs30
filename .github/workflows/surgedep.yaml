@@ -1,0 +1,23 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Node
+      uses: actions/setup-node@v2-beta
+      with:
+          node-version: 12
+
+    - name: Install Surge
+      run: npm install -g surge
+
+    - name: Deploy to Surge
+      run:  surge . https://iamaseemjs30.surge.sh/ --token ${{secrets.SURGE_SEC}}
