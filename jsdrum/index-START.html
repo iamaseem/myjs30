@@ -10,41 +10,41 @@
   <a href="/" >Go to home</a>
 
   <div class="keys">
-    <div data-key="65" class="key">
+    <div id="65" data-key="65" class="key">
       <kbd>A</kbd>
-      <span class="sound"><button onClick="ButtonHandele(e)">Clap</button></span>
+      <span class="sound"><button>Clap</button></span>
     </div>
-    <div data-key="83" class="key">
+    <div id="83" data-key="83" class="key">
       <kbd>S</kbd>
-      <span class="sound">hihat</span>
+      <span class="sound"><button>hihat</button></span>
     </div>
-    <div data-key="68" class="key">
+    <div id="68" data-key="68" class="key">
       <kbd>D</kbd>
-      <span class="sound">kick</span>
+      <span class="sound"><button>kick</button></span>
     </div>
-    <div data-key="70" class="key">
+    <div id="70" data-key="70" class="key">
       <kbd>F</kbd>
-      <span class="sound">openhat</span>
+      <span class="sound"><button>openhat</button></span>
     </div>
-    <div data-key="71" class="key">
+    <div id="71" data-key="71" class="key">
       <kbd>G</kbd>
-      <span class="sound">boom</span>
+      <span class="sound"><button>boom</button></span>
     </div>
-    <div data-key="72" class="key">
+    <div id="72" data-key="72" class="key">
       <kbd>H</kbd>
-      <span class="sound">ride</span>
+      <span class="sound"><button>ride</button></span>
     </div>
-    <div data-key="74" class="key">
+    <div id="74" data-key="74" class="key">
       <kbd>J</kbd>
-      <span class="sound">snare</span>
+      <span class="sound"><button>snare</button></span>
     </div>
-    <div data-key="75" class="key">
+    <div id="75" data-key="75" class="key">
       <kbd>K</kbd>
-      <span class="sound">tom</span>
+      <span class="sound"><button>tom</button></span>
     </div>
-    <div data-key="76" class="key">
+    <div id="76" data-key="76" class="key">
       <kbd>L</kbd>
-      <span class="sound">tink</span>
+      <span class="sound"><button>tink</button></span>
     </div>
   </div>
 
@@ -59,8 +59,8 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  function ButtonHandele(e){
-    console.log(e.keyCode);
+  function ButtonHandele(){
+    console.log(hello);
   }
 	window.addEventListener('keydown', function(e){
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
@@ -69,6 +69,15 @@
     if(!audio) return;
     audio.currentTime = 0;
     console.log(key);
+    audio.play(audio);
+    key.classList.add('playing');
+  });
+  window.addEventListener('click', function(e){
+    keycode = e.path[2].id;
+    const audio = document.querySelector(`audio[data-key="${keycode}"]`);
+    const key = document.querySelector(`.key[data-key="${keycode}"]`);
+    if(!audio) return;
+    audio.currentTime = 0;
     audio.play(audio);
     key.classList.add('playing');
   });
