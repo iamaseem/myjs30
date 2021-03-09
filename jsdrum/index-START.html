@@ -59,28 +59,18 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  function ButtonHandele(){
-    console.log(hello);
-  }
-	window.addEventListener('keydown', function(e){
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-    console.log(audio);
-    if(!audio) return;
-    audio.currentTime = 0;
-    console.log(key);
-    audio.play(audio);
-    key.classList.add('playing');
-  });
-  window.addEventListener('click', function(e){
-    keycode = e.path[2].id;
+	window.addEventListener('keydown', hadleEvent(e));
+  window.addEventListener('click', hadleEvent(e));
+
+  function hadleEvent(e){
+    const keycode = e.keyCode || e.path[2].id;
     const audio = document.querySelector(`audio[data-key="${keycode}"]`);
     const key = document.querySelector(`.key[data-key="${keycode}"]`);
     if(!audio) return;
     audio.currentTime = 0;
     audio.play(audio);
     key.classList.add('playing');
-  });
+  }
 
   function removeTransition(e){
     if(e.propertyName !== 'transform') return;
